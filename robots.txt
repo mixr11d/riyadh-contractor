@@ -1,0 +1,32 @@
+# Robots.txt - مقاول الرياض لأعمال الدهانات والديكورات
+# Live Domain: https://riyadh-contractor.dev/
+
+User-agent: *
+Allow: /
+Disallow: /thank-you.html
+Disallow: /404.html
+
+# السماح الكامل لروبوتات الذكاء الاصطناعي ومحركات الإجابة المتقدمة
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# رابط خريطة الموقع الرسمية
+Sitemap: https://riyadh-contractor.dev/sitemap.xml
