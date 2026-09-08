@@ -133,7 +133,7 @@ p {
 .text-white { color: #ffffff !important; }
 .text-center { text-align: center; }
 
-/* --- 4. BUTTONS & CRO CONVERSION ELEMENTS (STRICT STANDARDS) --- */
+/* --- 4. BUTTONS & CRO CONVERSION ELEMENTS --- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -146,7 +146,6 @@ p {
   cursor: pointer;
   transition: var(--transition);
   text-decoration: none;
-  /* تطبيق معايير الأزرار الصارمة لمنع اقتطاع النصوص في شاشات الجوال */
   white-space: normal !important;
   line-height: 1.35 !important;
   padding: 0.85rem 1.25rem !important;
@@ -305,6 +304,12 @@ p {
   color: var(--primary);
   padding: 0.4rem 0.25rem;
   position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 .nav-link::after {
   content: "";
@@ -324,6 +329,75 @@ p {
   transform: scaleX(1);
 }
 
+/* --- القائمة المنسدلة في سطح المكتب (Desktop Dropdown) --- */
+.nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.dropdown-arrow {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  transition: transform 0.25s ease;
+}
+.nav-dropdown:hover .dropdown-arrow,
+.nav-dropdown:focus-within .dropdown-arrow {
+  transform: rotate(180deg);
+}
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 280px;
+  background-color: #ffffff;
+  border-radius: var(--radius-md);
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.18);
+  border: 1px solid var(--border-color);
+  padding: 0.65rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+}
+.dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: 24px;
+  width: 12px;
+  height: 12px;
+  background-color: #ffffff;
+  transform: rotate(45deg);
+  border-top: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+}
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--primary);
+  transition: var(--transition);
+  border-bottom: 1px solid #f8fafc;
+}
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+.dropdown-item:hover {
+  background-color: var(--secondary-light);
+  color: var(--secondary);
+  padding-right: 1.5rem;
+}
+
 .header-cta-group {
   display: none;
   align-items: center;
@@ -335,7 +409,7 @@ p {
   }
 }
 
-/* Hamburger Button (3-Line Clean Icon) */
+/* زر الهمبرجر الذكي للموبايل */
 .hamburger-btn {
   display: flex;
   flex-direction: column;
@@ -370,7 +444,7 @@ p {
   transform: translateY(-10px) rotate(-45deg);
 }
 
-/* Mobile Drawer Navigation */
+/* نافذة التصفح الجانبية للموبايل */
 .mobile-nav-overlay {
   position: fixed;
   inset: 0;
@@ -427,13 +501,13 @@ p {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 .mobile-nav-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.85rem 1rem;
+  padding: 0.8rem 1rem;
   border-radius: var(--radius-sm);
   font-weight: 700;
   color: var(--primary);
@@ -443,6 +517,48 @@ p {
   background-color: var(--secondary-light);
   color: var(--secondary);
 }
+
+/* قائمة الخدمات المنسدلة في الجوال (Mobile Submenu) */
+.mobile-dropdown {
+  display: flex;
+  flex-direction: column;
+}
+.mobile-dropdown-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.mobile-dropdown.active .dropdown-arrow {
+  transform: rotate(180deg);
+}
+.mobile-submenu {
+  display: none;
+  flex-direction: column;
+  background-color: #f8fafc;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  margin-top: 0.25rem;
+  border-right: 3px solid var(--secondary);
+}
+.mobile-dropdown.active .mobile-submenu {
+  display: flex;
+}
+.mobile-sub-link {
+  padding: 0.55rem 0.75rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--primary);
+  border-bottom: 1px dashed #e2e8f0;
+}
+.mobile-sub-link:last-child {
+  border-bottom: none;
+}
+.mobile-sub-link:hover, .mobile-sub-link.active {
+  color: var(--secondary);
+}
+
 .mobile-nav-footer {
   margin-top: auto;
   padding: 1.25rem;
@@ -520,7 +636,7 @@ p {
   fill: var(--accent-gold);
 }
 
-/* Hero Quick Form Card */
+/* Quick Form Card */
 .hero-card-form {
   background-color: #ffffff;
   color: var(--primary);
@@ -539,7 +655,6 @@ p {
   margin-bottom: 1.25rem;
 }
 
-/* Forms Common */
 .form-group {
   margin-bottom: 1rem;
 }
@@ -731,7 +846,7 @@ p {
   font-weight: 600;
 }
 
-/* --- 11. INTERACTIVE CALCULATOR (حاسبة الأسعار التفاعلية) --- */
+/* --- 11. INTERACTIVE CALCULATOR --- */
 .calc-section {
   background-color: #ffffff;
   border-top: 1px solid var(--border-color);
@@ -835,7 +950,6 @@ p {
   color: var(--accent-gold);
 }
 
-/* Filter buttons */
 .filter-nav {
   display: flex;
   flex-wrap: wrap;
@@ -888,7 +1002,7 @@ p {
   font-weight: 700;
 }
 
-/* --- 14. GLOBAL DARK CTA BANNER (القسم السفلي الموحد في كل الصفحات) --- */
+/* --- 14. GLOBAL DARK CTA BANNER --- */
 .global-dark-cta {
   background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
   color: #ffffff;
@@ -1008,7 +1122,6 @@ p {
   transform: translateX(-4px);
 }
 
-/* سحابة الأحياء الـ 16 كاملة (Local SEO Neighborhoods Cloud) */
 .neighborhoods-cloud {
   display: flex;
   flex-wrap: wrap;
@@ -1028,7 +1141,7 @@ p {
   color: #ffffff;
 }
 
-/* شريط الحقوق والمطور مع مسافة الأمان الصارمة للموبايل */
+/* شريط الحقوق والمطور - توسيط تام ومسافة أمان بالجوال */
 .footer-bottom {
   background-color: #060913;
   padding: 1.5rem 0;
@@ -1043,6 +1156,12 @@ p {
   align-items: center;
   gap: 1rem;
 }
+.copyright-text {
+  font-size: 0.88rem;
+}
+.dev-credit {
+  font-size: 0.88rem;
+}
 .dev-credit a {
   color: var(--accent-gold);
   font-weight: 700;
@@ -1052,36 +1171,39 @@ p {
   color: #ffffff;
 }
 
-/* مسافة أمان لمنع تداخل الأزرار العائمة في شاشات الجوال */
+/* تطبيق التوسيط ومسافة الأمان في الجوال لمنع تغطية الأزرار العائمة */
 @media (max-width: 768px) {
   .site-footer {
-    padding-bottom: 95px !important;
+    padding-bottom: 130px !important; /* مسافة أمان كاملة تضمن عدم حجب الأزرار لأي كلمة */
+  }
+  .footer-bottom-inner {
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 0.65rem !important;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .footer-bottom-inner .copyright-text,
+  .footer-bottom-inner .dev-credit {
+    text-align: center !important;
+    width: 100%;
+    margin: 0 auto;
   }
 }
 
-/* --- 16. ZERO-OVERLAP FLOATING CTAS & PULSE ANIMATION --- */
+/* --- 16. ZERO-OVERLAP FLOATING CTAS --- */
 @keyframes luxury-pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
-  }
-  70% {
-    box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-  }
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+  70% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
 @keyframes luxury-pulse-blue {
-  0% {
-    box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.6);
-  }
-  70% {
-    box-shadow: 0 0 0 14px rgba(2, 132, 199, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(2, 132, 199, 0);
-  }
+  0% { box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.6); }
+  70% { box-shadow: 0 0 0 14px rgba(2, 132, 199, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(2, 132, 199, 0); }
 }
 
 .floating-contact-right {
@@ -1171,7 +1293,6 @@ p {
   border: 0 !important;
 }
 
-/* Image fallback styling */
 img.img-fallback {
   background: #e2e8f0;
   min-height: 200px;
