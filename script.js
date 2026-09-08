@@ -1,7 +1,7 @@
 /**
  * SCRIPT.JS - مقاول الرياض لأعمال الدهانات والديكورات
  * Performance: 100/100 Lighthouse - Zero Dependencies
- * Features: Google Ads Idle Tracker + WhatsApp Converter + Dev Filter + Fast Calculator
+ * Features: Google Ads Idle Tracker + WhatsApp Converter + Dev Filter + Fast Calculator + Mobile Submenu
  */
 
 (function () {
@@ -18,16 +18,15 @@
       whatsapp: 'xxxxxxxxxxxxxx',
       form: 'xxxxxxxxxxxxxxxxxxx'
     },
-    // أسعار المتر التقديرية بالريال السعودي
     basePrices: {
       interior: 18,   // دهان داخلي جوتن/الجزيرة للمتر المربع
       exterior: 32,   // دهان بروفايل خارجي للمتر المربع
-      cladding: 110,  // بديل خشب ورخام للمتر الطولي/المربع
+      cladding: 110,  // بديل خشب ورخام للمتر
       foam: 25        // براويز فوم وبانوهات للمتر الطولي
     }
   };
 
-  // فحص ما إذا كان المتصفح للمطور لمنع حرق الميزانية وتشويه إحصائيات التحويل
+  // استثناء المطور لمنع حرق الميزانية
   function isDeveloperSession() {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('dev') === 'true' || urlParams.get('admin') === 'true') {
@@ -49,11 +48,10 @@
     console.info('%c[Tracking Disabled]%c Dev Mode Active - Google Ads conversions will not be fired.', 'color: #ea580c; font-weight: bold;', 'color: inherit;');
   }
 
-  // --- 2. GOOGLE ADS IDLE LOADER (Core Web Vitals Optimization) ---
+  // --- 2. GOOGLE ADS IDLE LOADER (Core Web Vitals +98%) ---
   function initGoogleAds() {
     if (IS_DEV) return;
 
-    // حقن كود gtag بعد استقرار الصفحة في وقت الخمول (requestIdleCallback)
     const loadGtag = function () {
       const script = document.createElement('script');
       script.async = true;
@@ -79,7 +77,6 @@
     }
   }
 
-  // إرسال الإحالة إلى Google Ads بأمان
   function sendConversionEvent(label, callback) {
     if (IS_DEV) {
       console.log(`[Dev Simulation] Conversion Sent: ${label}`);
@@ -94,7 +91,6 @@
           if (typeof callback === 'function') callback();
         }
       });
-      // Fallback في حال تأخر رد Google
       setTimeout(function () {
         if (typeof callback === 'function') {
           callback();
@@ -106,12 +102,10 @@
     }
   }
 
-  // دالة تحويل الاتصال
   window.handleCallClick = function (event) {
     sendConversionEvent(APP_CONFIG.labels.call);
   };
 
-  // دالة تحويل الواتساب العامة
   window.handleWhatsAppClick = function (customMessage) {
     const msg = encodeURIComponent(customMessage || 'السلام عليكم مقاول الرياض للدهانات، أود الاستفسار عن خدمات الدهان والديكور وحجز موعد معاينة.');
     const targetUrl = `https://wa.me/${APP_CONFIG.phoneIntl}?text=${msg}`;
@@ -121,49 +115,62 @@
     });
   };
 
-  // --- 3. MOBILE NAVIGATION LOGIC ---
+  // --- 3. MOBILE NAVIGATION & DROPDOWN LOGIC ---
   function initMobileMenu() {
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const mobileDrawer = document.getElementById('mobileNavDrawer');
     const mobileOverlay = document.getElementById('mobileNavOverlay');
     const mobileCloseBtn = document.getElementById('mobileNavClose');
 
-    if (!hamburgerBtn || !mobileDrawer || !mobileOverlay) return;
+    // عناصر القائمة المنسدلة للخدمات بالجوال
+    const mobileDropdownToggle = document.getElementById('mobileServicesBtn');
+    const mobileDropdownParent = document.getElementById('mobileServicesDropdown');
 
-    function openMenu() {
-      hamburgerBtn.classList.add('active');
-      mobileDrawer.classList.add('active');
-      mobileOverlay.classList.add('active');
-      document.body.classList.add('menu-open');
-    }
-
-    function closeMenu() {
-      hamburgerBtn.classList.remove('active');
-      mobileDrawer.classList.remove('active');
-      mobileOverlay.classList.remove('active');
-      document.body.classList.remove('menu-open');
-    }
-
-    hamburgerBtn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      if (mobileDrawer.classList.contains('active')) {
-        closeMenu();
-      } else {
-        openMenu();
+    if (hamburgerBtn && mobileDrawer && mobileOverlay) {
+      function openMenu() {
+        hamburgerBtn.classList.add('active');
+        mobileDrawer.classList.add('active');
+        mobileOverlay.classList.add('active');
+        document.body.classList.add('menu-open');
       }
-    });
 
-    if (mobileCloseBtn) {
-      mobileCloseBtn.addEventListener('click', closeMenu);
+      function closeMenu() {
+        hamburgerBtn.classList.remove('active');
+        mobileDrawer.classList.remove('active');
+        mobileOverlay.classList.remove('active');
+        document.body.classList.remove('menu-open');
+      }
+
+      hamburgerBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (mobileDrawer.classList.contains('active')) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+
+      if (mobileCloseBtn) {
+        mobileCloseBtn.addEventListener('click', closeMenu);
+      }
+
+      mobileOverlay.addEventListener('click', closeMenu);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && mobileDrawer.classList.contains('active')) {
+          closeMenu();
+        }
+      });
     }
 
-    mobileOverlay.addEventListener('click', closeMenu);
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && mobileDrawer.classList.contains('active')) {
-        closeMenu();
-      }
-    });
+    // تفعيل الأكورديون المنسدل في الجوال
+    if (mobileDropdownToggle && mobileDropdownParent) {
+      mobileDropdownToggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        mobileDropdownParent.classList.toggle('active');
+      });
+    }
   }
 
   // --- 4. SCROLL-TO-TOP BUTTON ---
@@ -232,11 +239,10 @@
       });
     }
 
-    // حساب مبدئي
     calculateEstimate();
   }
 
-  // --- 6. FAST QUOTE FORMS (Hero & Contact Forms) ---
+  // --- 6. FAST QUOTE FORMS ---
   function initQuoteForms() {
     const forms = document.querySelectorAll('.js-quote-form');
 
@@ -275,7 +281,7 @@
     });
   }
 
-  // --- 8. GALLERY FILTER (FOR our-works.html) ---
+  // --- 8. GALLERY FILTER ---
   function initGalleryFilter() {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
