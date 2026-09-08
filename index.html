@@ -81,7 +81,7 @@
     </div>
   </div>
 
-  <!-- الهيدر وقائمة التصفح -->
+  <!-- الهيدر وقائمة التصفح المحدثة بالقائمة المنسدلة -->
   <header class="site-header">
     <div class="container header-wrapper">
       <a href="index.html" class="site-logo" aria-label="الرئيسية - مقاول الرياض">
@@ -95,12 +95,31 @@
       <!-- القائمة الرئيسية لسطح المكتب -->
       <nav class="desktop-nav" aria-label="القائمة الرئيسية">
         <a href="index.html" class="nav-link active">الرئيسية</a>
-        <a href="interior-painting.html" class="nav-link">دهانات داخلية</a>
-        <a href="exterior-painting.html" class="nav-link">دهانات خارجية</a>
-        <a href="wood-alternative.html" class="nav-link">بديل الخشب</a>
-        <a href="marble-alternative.html" class="nav-link">بديل الرخام</a>
+
+        <!-- القائمة المنسدلة: خدماتنا للـ 10 خدمات -->
+        <div class="nav-dropdown">
+          <button type="button" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            خدماتنا
+            <svg class="dropdown-arrow" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </button>
+          <div class="dropdown-menu">
+            <a href="interior-painting.html" class="dropdown-item">دهانات داخلية ومعجون</a>
+            <a href="exterior-painting.html" class="dropdown-item">دهانات خارجية وبروفايل</a>
+            <a href="wood-alternative.html" class="dropdown-item">ديكورات بديل الخشب</a>
+            <a href="marble-alternative.html" class="dropdown-item">ديكورات بديل الرخام</a>
+            <a href="chipboard-alternative.html" class="dropdown-item">ديكورات بديل الشيبورد</a>
+            <a href="gypsum.html" class="dropdown-item">جبس بورد وأسقف مستعارة</a>
+            <a href="foam-frames.html" class="dropdown-item">فوم وبانوهات وبراويز</a>
+            <a href="parquet-flooring.html" class="dropdown-item">أرضيات باركيه مقاومة للماء</a>
+            <a href="wallpaper.html" class="dropdown-item">ورق جدران 3D وتفصيل</a>
+            <a href="mirrors.html" class="dropdown-item">تفصيل وتركيب مرايا ديكور</a>
+          </div>
+        </div>
+
         <a href="prices.html" class="nav-link">الأسعار</a>
         <a href="our-works.html" class="nav-link">أعمالنا</a>
+        <a href="city-landing.html" class="nav-link">أحياء الرياض</a>
+        <a href="about-us.html" class="nav-link">من نحن</a>
         <a href="contact-us.html" class="nav-link">اتصل بنا</a>
       </nav>
 
@@ -130,16 +149,27 @@
     </div>
     <div class="mobile-nav-body">
       <a href="index.html" class="mobile-nav-link active">الرئيسية</a>
-      <a href="interior-painting.html" class="mobile-nav-link">دهانات داخلية ومعجون</a>
-      <a href="exterior-painting.html" class="mobile-nav-link">دهانات خارجية وبروفايل</a>
-      <a href="wood-alternative.html" class="mobile-nav-link">ديكورات بديل الخشب</a>
-      <a href="marble-alternative.html" class="mobile-nav-link">ديكورات بديل الرخام</a>
-      <a href="chipboard-alternative.html" class="mobile-nav-link">بديل الشيبورد</a>
-      <a href="gypsum.html" class="mobile-nav-link">جبس بورد وأسقف مستعارة</a>
-      <a href="foam-frames.html" class="mobile-nav-link">فوم وبانوهات وبراويز</a>
-      <a href="parquet-flooring.html" class="mobile-nav-link">أرضيات باركيه</a>
-      <a href="wallpaper.html" class="mobile-nav-link">ورق جدران 3D</a>
-      <a href="mirrors.html" class="mobile-nav-link">مرايا معتقة وسادة</a>
+
+      <!-- القائمة المنسدلة للخدمات في الجوال -->
+      <div class="mobile-dropdown" id="mobileServicesDropdown">
+        <button type="button" class="mobile-nav-link mobile-dropdown-btn" id="mobileServicesBtn">
+          <span>خدماتنا (10 خدمات متكاملة)</span>
+          <svg class="dropdown-arrow" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        </button>
+        <div class="mobile-submenu">
+          <a href="interior-painting.html" class="mobile-sub-link">• دهانات داخلية ومعجون</a>
+          <a href="exterior-painting.html" class="mobile-sub-link">• دهانات خارجية وبروفايل</a>
+          <a href="wood-alternative.html" class="mobile-sub-link">• ديكورات بديل الخشب</a>
+          <a href="marble-alternative.html" class="mobile-sub-link">• ديكورات بديل الرخام</a>
+          <a href="chipboard-alternative.html" class="mobile-sub-link">• بديل الشيبورد</a>
+          <a href="gypsum.html" class="mobile-sub-link">• جبس بورد وأسقف مستعارة</a>
+          <a href="foam-frames.html" class="mobile-sub-link">• فوم وبانوهات وبراويز</a>
+          <a href="parquet-flooring.html" class="mobile-sub-link">• أرضيات باركيه</a>
+          <a href="wallpaper.html" class="mobile-sub-link">• ورق جدران 3D</a>
+          <a href="mirrors.html" class="mobile-sub-link">• مرايا معتقة وسادة</a>
+        </div>
+      </div>
+
       <a href="prices.html" class="mobile-nav-link">حاسبة وتكلفة الأسعار</a>
       <a href="our-works.html" class="mobile-nav-link">معرض أعمالنا</a>
       <a href="city-landing.html" class="mobile-nav-link">تغطية أحياء الرياض</a>
@@ -158,7 +188,7 @@
     </div>
   </aside>
 
-  <!-- قسم الهيرو الرئيسي (Hero Section) -->
+  <!-- قسم الهيرو الرئيسي -->
   <section class="hero-section">
     <div class="container">
       <div class="hero-grid">
@@ -284,7 +314,6 @@
       </div>
 
       <div class="services-grid">
-        <!-- 1: دهانات داخلية -->
         <article class="service-card">
           <div class="service-card-img-wrap">
             <img src="images/interior-painting%20(1)_result.webp" alt="دهانات داخلية وتشطيب شقق وفلل بالرياض" width="400" height="220" loading="lazy" decoding="async">
@@ -302,7 +331,6 @@
           </div>
         </article>
 
-        <!-- 2: دهانات خارجية وبروفايل -->
         <article class="service-card">
           <div class="service-card-img-wrap">
             <img src="images/Exterior-Painting(2)_result_result.webp" alt="دهانات خارجية وبروفايل بالرياض" width="400" height="220" loading="lazy" decoding="async">
@@ -320,7 +348,6 @@
           </div>
         </article>
 
-        <!-- 3: بديل الخشب -->
         <article class="service-card">
           <div class="service-card-img-wrap">
             <img src="images/wood-alternative_result.webp" alt="تركيب ديكورات بديل الخشب بالرياض" width="400" height="220" loading="lazy" decoding="async">
@@ -338,7 +365,6 @@
           </div>
         </article>
 
-        <!-- 4: بديل الرخام -->
         <article class="service-card">
           <div class="service-card-img-wrap">
             <img src="images/marble-alternative_result_result.webp" alt="تركيب بديل الرخام بالرياض" width="400" height="220" loading="lazy" decoding="async">
@@ -356,7 +382,6 @@
           </div>
         </article>
 
-        <!-- 5: بديل الشيبورد -->
         <article class="service-card">
           <div class="service-card-img-wrap">
             <img src="images/chipboard-alternative%20(1)_result_result_result.webp" alt="تركيب ديكورات بديل شيبورد بالرياض" width="400" height="220" loading="lazy" decoding="async">
@@ -374,7 +399,6 @@
           </div>
         </article>
 
-        <!-- 6: جبس بورد -->
         <article class="service-card">
           <div class="service-card-img-wrap">
             <img src="images/gypsum-3_result_result.webp" alt="تصميم وتركيب جبس بورد بالرياض" width="400" height="220" loading="lazy" decoding="async">
@@ -392,7 +416,6 @@
           </div>
         </article>
 
-        <!-- 7: براويز فوم وبانوهات -->
         <article class="service-card">
           <div class="service-card-img-wrap">
             <img src="images/foam_result.webp" alt="تركيب فوم وبانوهات بالرياض" width="400" height="220" loading="lazy" decoding="async">
@@ -410,7 +433,6 @@
           </div>
         </article>
 
-        <!-- 8: باركيه أرضيات -->
         <article class="service-card">
           <div class="service-card-img-wrap">
             <img src="images/parquet-2_result_result.webp" alt="توريد وتركيب باركيه أرضيات بالرياض" width="400" height="220" loading="lazy" decoding="async">
@@ -428,7 +450,6 @@
           </div>
         </article>
 
-        <!-- 9: ورق جدران -->
         <article class="service-card">
           <div class="service-card-img-wrap">
             <img src="images/wallpaper_result_result.webp" alt="تركيب ورق جدران 3D بالرياض" width="400" height="220" loading="lazy" decoding="async">
@@ -446,7 +467,6 @@
           </div>
         </article>
 
-        <!-- 10: مرايا ديكور -->
         <article class="service-card">
           <div class="service-card-img-wrap">
             <img src="images/mirrors-1_result.webp" alt="تفصيل وتركيب مرايا ديكور بالرياض" width="400" height="220" loading="lazy" decoding="async">
@@ -467,7 +487,7 @@
     </div>
   </section>
 
-  <!-- حاسبة الأسعار التفاعلية الفورية (CRO Interactive Engine) -->
+  <!-- حاسبة الأسعار التفاعلية الفورية -->
   <section class="section-padding calc-section" id="calculator">
     <div class="container">
       <div class="section-title-wrap">
@@ -557,7 +577,7 @@
     </div>
   </section>
 
-  <!-- القسم السفلي الموحد للتحويل (Global Dark CTA Banner) -->
+  <!-- القسم السفلي الموحد للتحويل -->
   <section class="global-dark-cta">
     <div class="container">
       <div class="cta-inner">
@@ -651,10 +671,12 @@
       </div>
     </div>
 
-    <!-- شريط الحقوق وتوقيع المطور -->
+    <!-- شريط الحقوق وتوقيع المطور (متوسط في شاشات الجوال ومحمي تماماً من التداخل) -->
     <div class="footer-bottom">
       <div class="container footer-bottom-inner">
-        <div>&copy; 2026 جميع الحقوق محفوظة لمؤسسة مقاول دهانات وديكورات الرياض.</div>
+        <div class="copyright-text">
+          &copy; 2026 جميع الحقوق محفوظة لمؤسسة مقاول دهانات وديكورات الرياض.
+        </div>
         <div class="dev-credit">
           تطوير مواقع وإعلانات مؤسسة <a href="https://wa.me/966578539687" target="_blank" rel="noopener noreferrer">mix.tec</a>
         </div>
@@ -662,7 +684,7 @@
     </div>
   </footer>
 
-  <!-- الأزرار العائمة جهة اليمين (Floating CTAs Right) -->
+  <!-- الأزرار العائمة جهة اليمين -->
   <div class="floating-contact-right">
     <a href="javascript:void(0)" onclick="handleWhatsAppClick()" class="floating-btn floating-btn-whatsapp" aria-label="محادثة واتساب">
       <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.17.7 4.19 1.94 5.86L2.8 22l4.28-1.12C8.63 21.57 10.27 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.57 0-3.05-.44-4.32-1.22l-.31-.19-2.55.67.68-2.48-.2-.32C4.48 15.14 4 13.62 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>
@@ -672,7 +694,7 @@
     </a>
   </div>
 
-  <!-- زر الصعود للأعلى جهة اليسار (Floating Scroll-to-Top Left) -->
+  <!-- زر الصعود للأعلى جهة اليسار -->
   <button class="floating-scroll-left" id="scrollToTopBtn" aria-label="الرجوع للأعلى">
     <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
   </button>
